@@ -1,0 +1,6 @@
+Yandex like reverse image search using a pretained Convolutional Neural Network (Resnet50) to extract image features 
+and a Neural Network regression model to predict similarity measure between images. 
+
+Achieved results better than with Euclidean distance between image features. 23,000 images were indexed for the search. 
+
+Keras was used with tensorflow backend in a Google Compute instance.
