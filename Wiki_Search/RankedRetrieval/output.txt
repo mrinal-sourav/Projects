@@ -1,0 +1,336 @@
+
+
+['Harvard', 'University']
+
+	39
+	Gerard Salton - Wikipedia
+	1.0
+	Gerard A Gerry Salton 8 March 1927 in Nuremberg xe2 x80 x93 28 August 1995 was a Professor of Computer Science at Cornell University Salton was perhaps the leading computer scientist working in the field of information retrieval during his time and the father of information retrieval 1 His group at Cornell developed the SMART Information Retrieval System which he initiated when he was at Harvard
+	8
+	Howard H. Aiken - Wikipedia
+	0.9959690247837031
+	Howard Hathaway Aiken March 8 1900 xe2 x80 x93 March 14 1973 was an American physicist and a pioneer in computing being the original conceptual designer behind IBM s Harvard Mark I computer 2
+	10
+	Computer science - Wikipedia
+	0.9635358688860871
+	Computer science is the study of the theory experimentation and engineering that form the basis for the design and use of computers It is the scientific and practical approach to computation and its applications and the systematic study of the feasibility structure expression and mechanization of the methodical procedures or algorithms that underlie the acquisition representation processing storage communication of and access to information An alternate more succinct definition of computer science is the study of automating algorithmic processes that scale A computer scientist specializes in the theory of computation and the design of computational systems 1
+	2
+	Harvard University - Wikipedia
+	0.9598880849843021
+	Harvard University is a private Ivy League  research university in Cambridge Massachusetts established in 1636 whose history influence and wealth have made it one of the s most prestigious universities 8
+	13
+	Brooklyn College - Wikipedia
+	0.7569479833555588
+	Brooklyn College is a senior college of the City University of New York located in the Midwood neighborhood of Brooklyn  New York City 
+
+
+{'Harvard': 0.324740477496956, 'University': 0.94580316254231722}
+
+
+
+['parliament', 'corruption']
+
+	193
+	Iraq - Wikipedia
+	1.0
+	Coordinates  33 xc2 xb0N  44 xc2 xb0E xef xbb xbf xef xbb xbf 33 xc2 xb0N 44 xc2 xb0E xef xbb xbf 33 44
+	91
+	Italy - Wikipedia
+	1.0
+	Coordinates  43 xc2 xb0N  12 xc2 xb0E xef xbb xbf xef xbb xbf 43 xc2 xb0N 12 xc2 xb0E xef xbb xbf 43 12
+	172
+	Soviet Union - Wikipedia
+	0.9827135639213007
+	The Soviet Union  8 officially the Union of Soviet Socialist Republics 9  USSR Russian xd0 xa1 xd0 xa1 xd0 xa1 xd0 xa0 was a socialist state in Eurasia that existed from 1922 to 1991 Nominally a union of multiple equal national Soviet republics  a its government and economy were highly centralized The country was a one party state governed by the Communist Party with Moscow as its capital in its largest republic the Russian Soviet Federative Socialist Republic The Russian nation had constitutionally equal status among the many nations of the union but exerted de facto dominance in various respects 10 Other major urban centres were Leningrad  Kiev  Minsk  Alma Ata and Novosibirsk The Soviet Union was one of the five recognized  nuclear weapons states and possessed the largest stockpile of weapons of mass destruction  11 It was a founding permanent member of the United Nations Security Council as well as a member of the Organization for Security and Co operation in Europe OSCE and the leading member of the Council for Mutual Economic Assistance CMEA and the Warsaw Pact 
+	194
+	Bulgaria - Wikipedia
+	0.9798055249950883
+	Coordinates  42 xc2 xb045 xe2 x80 xb2N  25 xc2 xb030 xe2 x80 xb2E xef xbb xbf xef xbb xbf 42 750 xc2 xb0N 25 500 xc2 xb0E xef xbb xbf 42 750 25 500
+	188
+	Ukraine - Wikipedia
+	0.8928968643048969
+	Ukraine   ju xcb x90 xcb x88 k r e xc9 xaa n  160 160 listen   Ukrainian  xd0 xa3 xd0 xba xd1 x80 xd0 xb0 xd1 x97 xd0 xbd xd0 xb0  translit 160 Ukrajina  ukr xc9 x91 xcb x88jin xc9 x91  sometimes called the Ukraine  8 is a sovereign state in Eastern Europe  9  bordered by Russia to the east and northeast Belarus to the northwest Poland  Hungary and Slovakia to the west Romania and Moldova to the southwest and the Black Sea and Sea of Azov to the south and southeast respectively Ukraine is currently in territorial dispute with Russia over the Crimean Peninsula which Russia annexed in 2014 10 but which Ukraine and most of the international community recognise as Ukrainian Including Crimea Ukraine has an area of 603 628 160 km 2 233 062 160 sq 160 mi 11 making it the largest country entirely within Europe and the 46th largest country in the world Excluding Crimea Ukraine has a population of about 42 5 million making it the 32nd most populous country in the world 3
+
+
+{'parliament': 0.63236653487174455, 'corruption': 0.77466932659961596}
+
+
+
+['American', 'student', 'study', 'scholarship']
+
+	116
+	Reformation - Wikipedia
+	0.9711872623393318
+	The Reformation also referred to as the Protestant Reformation was a schism from the Roman Catholic Church initiated by Martin Luther and continued by John Calvin  Huldrych Zwingli and other early Protestant Reformers in 16th century Europe It is usually considered to have started with the publication of the Ninety five Theses by Luther in 1517 and lasting until the end of the Thirty Years War with the Peace of Westphalia in 1648
+	188
+	Ukraine - Wikipedia
+	0.9298765167296943
+	Ukraine   ju xcb x90 xcb x88 k r e xc9 xaa n  160 160 listen   Ukrainian  xd0 xa3 xd0 xba xd1 x80 xd0 xb0 xd1 x97 xd0 xbd xd0 xb0  translit 160 Ukrajina  ukr xc9 x91 xcb x88jin xc9 x91  sometimes called the Ukraine  8 is a sovereign state in Eastern Europe  9  bordered by Russia to the east and northeast Belarus to the northwest Poland  Hungary and Slovakia to the west Romania and Moldova to the southwest and the Black Sea and Sea of Azov to the south and southeast respectively Ukraine is currently in territorial dispute with Russia over the Crimean Peninsula which Russia annexed in 2014 10 but which Ukraine and most of the international community recognise as Ukrainian Including Crimea Ukraine has an area of 603 628 160 km 2 233 062 160 sq 160 mi 11 making it the largest country entirely within Europe and the 46th largest country in the world Excluding Crimea Ukraine has a population of about 42 5 million making it the 32nd most populous country in the world 3
+	37
+	Institute for Advanced Technology in the Humanities - Wikipedia
+	0.8985859826150722
+	Coordinates  37 xc2 xb032 xe2 x80 xb212 2 xe2 x80 xb3N  78 xc2 xb030 xe2 x80 xb220 xe2 x80 xb3W xef xbb xbf xef xbb xbf 37 536722 xc2 xb0N 78 50556 xc2 xb0W xef xbb xbf 37 536722 78 50556
+	6
+	Thesis - Wikipedia
+	0.8167546180021379
+	A thesis or dissertation 1 is a document submitted in support of candidature for an academic degree or professional qualification presenting the s research and findings 2 In some contexts the word thesis or a cognate is used for part of a s or s course while dissertation is normally applied to a doctorate while in other contexts the reverse is true 3 The term graduate thesis is sometimes used to refer to both s theses and doctoral dissertations 4
+	13
+	Brooklyn College - Wikipedia
+	0.8100453324453918
+	Brooklyn College is a senior college of the City University of New York located in the Midwood neighborhood of Brooklyn  New York City 
+
+
+{'American': 0.36843985992000294, 'student': 0.54022416793705619, 'study': 0.71806310065969126, 'scholarship': 0.23831764825508434}
+
+
+
+['Germany', 'education']
+
+	194
+	Bulgaria - Wikipedia
+	1.0000000000000002
+	Coordinates  42 xc2 xb045 xe2 x80 xb2N  25 xc2 xb030 xe2 x80 xb2E xef xbb xbf xef xbb xbf 42 750 xc2 xb0N 25 500 xc2 xb0E xef xbb xbf 42 750 25 500
+	132
+	France - Wikipedia
+	1.0
+	xe2 x80 x93 160 in Europe 160 160 green amp 160 dark grey n xe2 x80 x93 160 in the European Union 160 160 green
+	161
+	Slavery - Wikipedia
+	1.0
+	Slavery is in the strictest sense of the term any system in which principles of property law are applied to people allowing individuals to own buy and sell other individuals as a de jure form of property  1 A slave is unable to withdraw unilaterally from such an arrangement and works without remuneration Many scholars now use the term chattel slavery to refer to this specific sense of legalised de jure slavery In a broader sense however the word slavery may also refer to any situation in which an individual is de facto forced to work against their own will Scholars also use the more generic terms such as unfree labour or forced labour to refer to such situations 2 However and especially under slavery in broader senses of the word slaves may have some rights and protections according to laws or customs
+	189
+	Romania - Wikipedia
+	0.9989387025170136
+	Coordinates  46 xc2 xb0N  25 xc2 xb0E xef xbb xbf xef xbb xbf 46 xc2 xb0N 25 xc2 xb0E xef xbb xbf 46 25
+	172
+	Soviet Union - Wikipedia
+	0.9984818429491528
+	The Soviet Union  8 officially the Union of Soviet Socialist Republics 9  USSR Russian xd0 xa1 xd0 xa1 xd0 xa1 xd0 xa0 was a socialist state in Eurasia that existed from 1922 to 1991 Nominally a union of multiple equal national Soviet republics  a its government and economy were highly centralized The country was a one party state governed by the Communist Party with Moscow as its capital in its largest republic the Russian Soviet Federative Socialist Republic The Russian nation had constitutionally equal status among the many nations of the union but exerted de facto dominance in various respects 10 Other major urban centres were Leningrad  Kiev  Minsk  Alma Ata and Novosibirsk The Soviet Union was one of the five recognized  nuclear weapons states and possessed the largest stockpile of weapons of mass destruction  11 It was a founding permanent member of the United Nations Security Council as well as a member of the Organization for Security and Co operation in Europe OSCE and the leading member of the Council for Mutual Economic Assistance CMEA and the Warsaw Pact 
+
+
+{'Germany': 0.955911428071054, 'education': 0.29365514074021953}
+
+
+
+['Gerard', 'Information']
+
+	3
+	Gerard Salton Award - Wikipedia
+	1.0000000000000002
+	The Gerard Salton Award is presented by the Association for Computing Machinery ACM Special Interest Group on Information Retrieval SIGIR every three years to an individual who has made significant sustained and continuing contributions to research in information retrieval SIGIR also co sponsors with SIGWEB the Vannevar Bush Award for the best paper at the Joint Conference on Digital Libraries 
+	11
+	SMART Information Retrieval System - Wikipedia
+	1.0000000000000002
+	The SMART System for the Mechanical Analysis and Retrieval of Text Information Retrieval System is an information retrieval system developed at Cornell University in the 1960s Many important concepts in information retrieval were developed as part of research on the SMART system including the vector space model  relevance feedback and Rocchio classification 
+	20
+	Special Interest Group on Information Retrieval - Wikipedia
+	1.0000000000000002
+	SIGIR is the Association for Computing Machinery s Special Interest Group on Information Retrieval The scope of the s specialty is the theory and application of computers to the acquisition organization storage retrieval and distribution of information emphasis is placed on working with non numeric information ranging from natural language to highly structured data bases
+	4
+	Information retrieval - Wikipedia
+	0.9438057252635633
+	Information retrieval  IR is the activity of obtaining information resources relevant to an information need from a collection of information resources Searches can be based on full text or other content based indexing Information retrieval is the science of searching for information in a document searching for documents themselves and also searching for metadata that describe data and for databases of texts images or sounds
+	9
+	Amit Singhal - Wikipedia
+	0.939507512610741
+	Amitabh Kumar Amit Singhal born September 1968 is the former senior vice president of engineering at Uber a position he took up in 2017 which he was asked to resign from shortly after alleged involvement in sexual harassment during his former job 5 He reported to CEO Travis Kalanick at Uber 6 7 Prior to this he was senior vice president and software engineer at Google Inc He was a Google Fellow and was the head of s core ranking team 8 9 He left Google on 26 February 2016 as the Head of Google Search 10 11
+
+
+{'Gerard': 0.85112252504882968, 'Information': 0.52496709168718803}
+
+
+
+['retrieval', 'term', 'frequency']
+
+	39
+	Gerard Salton - Wikipedia
+	0.9881399738928961
+	Gerard A Gerry Salton 8 March 1927 in Nuremberg xe2 x80 x93 28 August 1995 was a Professor of Computer Science at Cornell University Salton was perhaps the leading computer scientist working in the field of information retrieval during his time and the father of information retrieval 1 His group at Cornell developed the SMART Information Retrieval System which he initiated when he was at Harvard
+	17
+	Karen Sp\xc3\xa4rck Jones - Wikipedia
+	0.9233128978266358
+	Karen Sp xc3 xa4rck Jones  FBA 26 August 1935 xe2 x80 x93 4 April 2007 was a British computer scientist 3 4
+	15
+	Vector space model - Wikipedia
+	0.877012169497024
+	Vector space model or term vector model is an algebraic model for representing text documents and any objects in general as vectors of identifiers such as for example index terms It is used in information filtering  information retrieval  indexing and relevancy rankings Its first use was in the SMART Information Retrieval System 
+	11
+	SMART Information Retrieval System - Wikipedia
+	0.8745911653509966
+	The SMART System for the Mechanical Analysis and Retrieval of Text Information Retrieval System is an information retrieval system developed at Cornell University in the 1960s Many important concepts in information retrieval were developed as part of research on the SMART system including the vector space model  relevance feedback and Rocchio classification 
+	16
+	tf\xe2\x80\x93idf - Wikipedia
+	0.8405256250750736
+	In information retrieval  tf xe2 x80 x93idf short for term frequency xe2 x80 x93inverse document frequency is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus  1 It is often used as a weighting factor in information retrieval text mining and user modeling The tf idf value increases proportionally to the number of times a word appears in the document but is often offset by the frequency of the word in the corpus which helps to adjust for the fact that some words appear more frequently in general Nowadays tf idf is one of the most popular term weighting schemes For instance 83 of text based recommender systems in the domain of digital libraries use tf idf 2
+
+
+{'retrieval': 0.63923639579842817, 'term': 0.21324997037932791, 'frequency': 0.73885132497671746}
+
+
+
+['Afghanistan', 'Syria', 'bomb']
+
+	144
+	Nazi Germany - Wikipedia
+	0.6909963789635039
+	Nazi Germany is the common English name for the period in German history from 1933 to 1945 when Germany was governed by a dictatorship under the control of Adolf Hitler and the Nazi Party NSDAP Under s rule Germany was transformed into a totalitarian state in which the Nazi Party controlled nearly all aspects of life The official name of the state was Deutsches Reich from 1933 to 1943 and Gro xc3 x9fdeutsches Reich Greater German Reich from 1943 to 1945 The period is also known under the names the Third Reich  German  Drittes Reich and the National Socialist Period German  Zeit des Nationalsozialismus abbreviated as NS Zeit The Nazi regime came to an end after the Allied Powers defeated Germany in May 1945 ending World War II in Europe 
+	152
+	Nuremberg Laws - Wikipedia
+	0.6909963789635039
+	The Nuremberg Laws German N xc3 xbcrnberger Gesetze were antisemitic laws in Nazi Germany They were introduced on 15 160 September 1935 by the Reichstag at a special meeting convened at the annual Nuremberg Rally of the Nazi Party NSDAP The two laws were the Law for the Protection of German Blood and German Honour which forbade marriages and extramarital intercourse between Jews and Germans and the employment of German females under 45 in Jewish households and the Reich Citizenship Law which declared that only those of German or related blood were eligible to be Reich citizens the remainder were classed as state subjects without citizenship rights A supplementary decree outlining the definition of who was Jewish was passed on 14 November and the Reich Citizenship Law officially came into force on that date The laws were expanded on 26 November 1935 to include Romani people and Black people This supplementary decree defined Gypsies as enemies of the race based state the same category as Jews
+	162
+	Strategic bombing during World War II - Wikipedia
+	0.6909963789635039
+	 Britain  
+	165
+	United States Army Air Forces - Wikipedia
+	0.6909963789635039
+	The United States Army Air Forces  USAAF or AAF was the military aviation service of the United States of America during and immediately after World War II 1939 41 1945 successor to the previous United States Army Air Corps and the direct predecessor of the United States Air Force of today one of the five uniformed military services The AAF was a component of the United States Army which in 1942 was divided functionally by executive order into three autonomous forces the Army Ground Forces the Services of Supply which in 1943 became the Army Service Forces and the Army Air Forces Each of these forces had a commanding general who reported directly to the Army Chief of Staff 
+	171
+	Nuremberg trials - Wikipedia
+	0.6909963789635039
+	Coordinates  49 xc2 xb027 2603 xe2 x80 xb2N  11 xc2 xb002 9103 xe2 x80 xb2E xef xbb xbf xef xbb xbf 49 4543383 xc2 xb0N 11 0485050 xc2 xb0E xef xbb xbf 49 4543383 11 0485050 The Nuremberg trials German die N xc3 xbcrnberger Prozesse were a series of military tribunals held by the Allied forces under international law and the laws of war after World War II The trials were most notable for the prosecution of prominent members of the political military judicial and economic leadership of Nazi Germany who planned carried out or otherwise participated in the Holocaust and other war crimes The trials were held in the city of Nuremberg Germany and their decisions marked a turning point between classical and contemporary international law
+
+
+{'Afghanistan': 0.69099637896350385, 'Syria': 0.55440596583450663, 'bomb': 0.46385130085667908}
+
+
+
+['History', 'World', 'War']
+
+	14
+	Applied mathematics - Wikipedia
+	1.0
+	Applied mathematics is a branch of mathematics that deals with mathematical methods that find use in science  engineering  business  computer science and industry Thus applied mathematics is a combination of mathematical science and specialized knowledge The term applied mathematics also describes the professional specialty in which mathematicians work on practical problems by formulating and studying mathematical models In the past practical applications have motivated the development of mathematical theories which then became the subject of study in pure mathematics where abstract concepts are studied for their own sake The activity of applied mathematics is thus intimately connected with research in pure mathematics
+	17
+	Karen Sp\xc3\xa4rck Jones - Wikipedia
+	0.9999999999999998
+	Karen Sp xc3 xa4rck Jones  FBA 26 August 1935 xe2 x80 x93 4 April 2007 was a British computer scientist 3 4
+	126
+	St. Egidien, Nuremberg - Wikipedia
+	0.9999999999999998
+	St Egidien on Egidienplatz is the former Benedictine  Abbey of Saint Giles  Egidienskirche now a church in the former free imperial city of Nuremberg southern Germany It is considered a significant contribution to the baroque church architecture of Middle Franconia  1
+	36
+	National Diet Library - Wikipedia
+	0.9798513984544439
+	The National Diet Library  NDL   xe5 x9b xbd xe7 xab x8b xe5 x9b xbd xe4 xbc x9a xe5 x9b xb3 xe6 x9b xb8 xe9 xa4 xa8   Kokuritsu Kokkai Toshokan  is the national library of Japan and among the largest libraries in the world It was established in 1948 for the purpose of assisting members of the National Diet of Japan   xe5 x9b xbd xe4 xbc x9a   Kokkai  in researching matters of public policy The library is similar in purpose and scope to the United States Library of Congress 
+	200
+	Pocket watch - Wikipedia
+	0.9579127800005429
+	A pocket watch or pocketwatch is a watch that is made to be carried in a pocket as opposed to a wristwatch which is strapped to the wrist 
+
+
+{'History': 0.61666583214715209, 'World': 0.48933271188887495, 'War': 0.61666583214715209}
+
+
+
+['Turing', 'Computer']
+
+	187
+	Greece - Wikipedia
+	1.0
+	xe2 x80 x93 160 in Europe 160 160 green amp 160 dark grey n xe2 x80 x93 160 in the European Union 160 160 green 160 xe2 x80 x93 160 Legend 
+	2
+	Harvard University - Wikipedia
+	0.8032990813000259
+	Harvard University is a private Ivy League  research university in Cambridge Massachusetts established in 1636 whose history influence and wealth have made it one of the s most prestigious universities 8
+	5
+	Cornell University - Wikipedia
+	0.8032990813000259
+	Cornell University   k xc9 x94 xcb x90r xcb x88 n xc9 x9b l   kor NEL is a private and statutory  Ivy League  research university located in Ithaca New York Founded in 1865 by Ezra Cornell and Andrew Dickson White  7 the university was intended to teach and make contributions in all fields of knowledge xe2 x80 x94from the classics to the sciences and from the theoretical to the applied These ideals unconventional for the time are captured in s motto a popular 1865 Ezra Cornell quotation I would found an institution where any person can find instruction in any study 1
+	10
+	Computer science - Wikipedia
+	0.7656666481311734
+	Computer science is the study of the theory experimentation and engineering that form the basis for the design and use of computers It is the scientific and practical approach to computation and its applications and the systematic study of the feasibility structure expression and mechanization of the methodical procedures or algorithms that underlie the acquisition representation processing storage communication of and access to information An alternate more succinct definition of computer science is the study of automating algorithmic processes that scale A computer scientist specializes in the theory of computation and the design of computational systems 1
+	38
+	Association for Computing Machinery - Wikipedia
+	0.5955758440220141
+	The Association for Computing Machinery  ACM is an international learned society for computing It was founded in 1947 and is the s largest 1 scientific and educational computing society It is a not for profit professional membership group 2 Its membership is more than 100 000 as of 2011 Its headquarters are in New York City
+
+
+{'Turing': 0.59557584402201413, 'Computer': 0.80329908130002592}
+
+
+
+['Shakespeare', 'literature', 'writer']
+
+	2
+	Harvard University - Wikipedia
+	0.9296497477791201
+	Harvard University is a private Ivy League  research university in Cambridge Massachusetts established in 1636 whose history influence and wealth have made it one of the s most prestigious universities 8
+	132
+	France - Wikipedia
+	0.8368332582740273
+	xe2 x80 x93 160 in Europe 160 160 green amp 160 dark grey n xe2 x80 x93 160 in the European Union 160 160 green
+	148
+	Propaganda in Nazi Germany - Wikipedia
+	0.786520747994339
+	The propaganda used by the German Nazi Party in the years leading up to and during Adolf Hitler s leadership of Germany 1933 xe2 x80 x931945 was a crucial instrument for acquiring and maintaining power and for the implementation of Nazi policies The pervasive use of propaganda by the Nazis is largely responsible for the word propaganda itself acquiring its present negative connotations 1
+	186
+	Russia - Wikipedia
+	0.6477017677581773
+	Coordinates  60 xc2 xb0N  90 xc2 xb0E xef xbb xbf xef xbb xbf 60 xc2 xb0N 90 xc2 xb0E xef xbb xbf 60 90
+	194
+	Bulgaria - Wikipedia
+	0.6175638533580359
+	Coordinates  42 xc2 xb045 xe2 x80 xb2N  25 xc2 xb030 xe2 x80 xb2E xef xbb xbf xef xbb xbf 42 750 xc2 xb0N 25 500 xc2 xb0E xef xbb xbf 42 750 25 500
+
+
+{'Shakespeare': 0.36844449575779875, 'literature': 0.49561453421001178, 'writer': 0.78652074799433902}
+
+
+
+['Hitler']
+
+	137
+	Napoleon - Wikipedia
+	1.0
+	Napol xc3 xa9on Bonaparte   n xc9 x99 xcb x88 p o xca x8a l i xc9 x99n  xcb x88 b o xca x8a n xc9 x99 p xc9 x91 xcb x90r t   2  French 160 nap xc9 x94le xc9 x94 xcc x83 b xc9 x94napa xca x81t 15 August 1769 xe2 x80 x93 5 May 1821 was a French military and political leader who rose to prominence during the French Revolution and led several successful campaigns during the French Revolutionary Wars As Napoleon I he was Emperor of the French from 1804 until 1814 and again briefly in 1815 during the Hundred Days Napoleon dominated European and global affairs for more than a decade while leading France against a series of coalitions in the Napoleonic Wars He won most of these wars and the vast majority of his battles building a large empire that ruled over continental Europe before its final collapse in 1815 One of the greatest commanders in history his wars and campaigns are studied at military schools worldwide s political and cultural legacy has endured as one of the most celebrated and controversial leaders in human history  3 4
+	138
+	Teutonic Order - Wikipedia
+	1.0
+	The Order of Brothers of the German House of Saint Mary in Jerusalem 2 official names Latin  Ordo domus Sanct xc3 xa6 Mari xc3 xa6 Theutonicorum Hierosolymitanorum  German  Orden der Br xc3 xbcder vom Deutschen Haus der Heiligen Maria in Jerusalem commonly the Teutonic Order  Deutscher Orden  Deutschherrenorden or Deutschritterorden is a Catholic religious order founded as a military order c 1190 in Acre  Kingdom of Jerusalem Purely religious since 1929 it still confers limited honorary knighthoods  3
+	12
+	Nuremberg - Wikipedia
+	1.0
+	Nuremberg   xcb x88 nj xca x8a xc9 x99r xc9 x99 m b xc9 x9c xcb x90r xc9 xa1  German N xc3 xbcrnberg  pronounced  xcb x88n xca x8f xc9 x90 xcc xafnb xc9 x9b xc9 x90 xcc xafk 160 160 listen  2 is a city on the river Pegnitz and on the Rhine xe2 x80 x93Main xe2 x80 x93Danube Canal in the German state of Bavaria in the administrative region of Middle Franconia about 170 kilometres 110 160 mi north of Munich It is the second largest city in Bavaria after Munich and the largest in Franconia  German  Franken As of February 2015 update it had a population of 517 498 making it Germany s fourteenth largest city The urban area also includes F xc3 xbcrth  Erlangen and Schwabach with a total population of 763 854 As of 2016 update the European Metropolitan Area Nuremberg had approximately 3 5 million inhabitants 3
+	143
+	Nuremberg Rally - Wikipedia
+	1.0
+	The Nuremberg Rally officially 160 Reichsparteitag 160  help xc2 xb7 info  meaning Imperial Party Convention was the annual rally of the Nazi Party in Germany held from 1923 to 1938 1 They were large Nazi propaganda events especially after Adolf s rise to power in 1933 These events were held at the Nazi party rally grounds in Nuremberg from 1933 to 1938 and are usually referred to in English as the Nuremberg Rallies Many films were made to commemorate them the most famous of which is Leni Riefenstahl s Triumph of the Will and Der Sieg des Glaubens 
+	144
+	Nazi Germany - Wikipedia
+	1.0
+	Nazi Germany is the common English name for the period in German history from 1933 to 1945 when Germany was governed by a dictatorship under the control of Adolf Hitler and the Nazi Party NSDAP Under s rule Germany was transformed into a totalitarian state in which the Nazi Party controlled nearly all aspects of life The official name of the state was Deutsches Reich from 1933 to 1943 and Gro xc3 x9fdeutsches Reich Greater German Reich from 1943 to 1945 The period is also known under the names the Third Reich  German  Drittes Reich and the National Socialist Period German  Zeit des Nationalsozialismus abbreviated as NS Zeit The Nazi regime came to an end after the Allied Powers defeated Germany in May 1945 ending World War II in Europe 
+
+
+{'Hitler': 1.0}
+
+
+
+['Professor']
+
+	2
+	Harvard University - Wikipedia
+	1.0
+	Harvard University is a private Ivy League  research university in Cambridge Massachusetts established in 1636 whose history influence and wealth have made it one of the s most prestigious universities 8
+	35
+	Mathematics Genealogy Project - Wikipedia
+	1.0
+	The Mathematics Genealogy Project is a web based database for the academic genealogy of mathematicians  1 2 3 By 24 April 2017 it contained information on 211 735 mathematical scientists who contributed to research level mathematics For a typical mathematician the project entry includes graduation year thesis title alma mater  doctoral advisor and doctoral students 1 4
+	162
+	Strategic bombing during World War II - Wikipedia
+	1.0
+	 Britain  
+	69
+	States of Germany - Wikipedia
+	1.0
+	Germany is a federal republic consisting of sixteen states  German  Land plural L xc3 xa4nder informally also Bundesland plural Bundesl xc3 xa4nder  a Since s Germany was formed from an earlier collection of several states it has a federal constitution and the constituent states retain a measure of sovereignty With an emphasis on geographical conditions Berlin and Hamburg are frequently called Stadtstaaten  city states as is the Free Hanseatic City of Bremen which in fact includes the cities of Bremen and Bremerhaven The remaining 13 states are called Fl xc3 xa4chenl xc3 xa4nder literally xe2 x80 x98area states xe2 x80 x99
+	38
+	Association for Computing Machinery - Wikipedia
+	1.0
+	The Association for Computing Machinery  ACM is an international learned society for computing It was founded in 1947 and is the s largest 1 scientific and educational computing society It is a not for profit professional membership group 2 Its membership is more than 100 000 as of 2011 Its headquarters are in New York City
+
+
+{'Professor': 1.0}
+
