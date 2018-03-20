@@ -6,13 +6,14 @@ import re
 import numpy as np 
 import pandas as pd
 from collections import deque
+from sys import argv 
 
 #initializing arguments and constants
-SeedUrl = input("\n\tPlease enter the seed url for the crawl: ")
-max_pages = int(input("\n\tEnter the number of videos to crawl: "))
+script_name, SeedUrl, numpages = argv 
 
 list_of_site_size =[]
 num_pages = 0
+max_pages = int(numpages)
 prepend = "https://www.youtube.com/watch?v="
 urllist = []  
 scored_list = []
@@ -20,8 +21,12 @@ scored_list = []
 #frontier is defined as a queue and the seed url is added to it
 frontier = deque() 
 frontier.append(SeedUrl) 
+#the depth queue keeps track of the depth
+depth_queue = deque()
+depth_queue.append(1) 
 
 #get SeedUrl title 
+
 with urllib.request.urlopen(SeedUrl) as url:
     theSite=str(url.read()) #theSite contains all the text read from current_url 
     seed_title = re.findall('''<title>(.+?)</title>''',theSite,re.DOTALL)[0]
@@ -33,27 +38,24 @@ seed_title = re.sub(r'\W+',' ', seed_title)
 while frontier and num_pages < max_pages:
     links = [] 
     current_url = frontier.popleft() #current_url is populated starting with the seed url
-    time.sleep(1.5) #wait time is added for politeness policy while crawling
+    depth = depth_queue.popleft()
+    time.sleep(2) #wait time is added for politeness policy while crawling
     with urllib.request.urlopen(current_url) as url:
         theSite=str(url.read()) #theSite contains all the text read from current_url 
-        links = re.findall('''<a href="/watch\?v=(.+?)"''',theSite,re.DOTALL)
+        links = re.findall('''<a href="/watch\?v=(.[^;]+?)"''',theSite,re.DOTALL)
         links = list(set(links))
     for link in links:
         complete_link = prepend + link #as urls are relative, the domain is prepended to make them absolute. 
         if complete_link not in urllist: #checks for only unique urls
             frontier.append(complete_link)
+            depth_queue.append(depth+1)
             urllist.append(complete_link) #keeps a permanent list of unique urls
             num_pages+=1 
             if num_pages >= max_pages: #break when max_pages are reached. 
                 break 
-
-total = len(urllist)   
-count = 0         
+            
 for link in urllist:
-    count+=1
-    if count % int(total/5) == 0: 
-        print("\n\t\tUrls remaining: "+ str(total - count))
-    time.sleep(1.5)
+    time.sleep(2)
     with urllib.request.urlopen(link) as url:
         theSite=str(url.read()) 
         
@@ -95,5 +97,3 @@ df = df.sort_values('Score')
 df = df.reset_index(drop=True)  
 
 df.to_csv('%s.csv' %seed_title[:50])
-
-print("\n\tCrawling complete: CSV file named "+ seed_title[:30]+" created \n")

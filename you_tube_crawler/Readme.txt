@@ -9,7 +9,6 @@
 	import numpy as np 
 	import pandas as pd
 	from collections import deque
-	from sys import argv 
  
  - Inputs: 
 	A Seed URL from youtube 
@@ -25,18 +24,41 @@
 		No. of Views / (Likes - Dislikes)
 
 	The smaller this number, the "better" the video. 
-	Justin Beiber may come up in negative as he has more dislikes than likes for 
-	some of his videos! 
+	If EVERY person who views a video also hits "like", this score will be 1. 
+	Justin Bieber may come up in negative (and on the top) as he has more dislikes than likes for 
+	some of his videos! Ignore negatives and single digit or wierd looking integers for views/score. 
 
- - Sample command: 
+ - Sample command (Updated 20th March 2018): 
 
-	python you_tube_crawler.py https://www.youtube.com/channel/UCm0MhzIIHEHkOP5RodZbBUQ/videos 300
+	Open command prompt or terminal and "cd" into the directory with the code, then type and enter:
+	
+	python you_tube_crawler.py 
 
- - IMPORTANT NOTE: 
+        Please enter the seed url for the crawl: https://www.youtube.com/user/TEDtalksDirector/videos?flow=grid&view=0&sort=p
 
-	WAIT TIME IS ADDED FOR "POLITENESS POLICY" WHILE CRAWLING. 
+        Enter the number of videos to crawl: 100
+
+                Urls remaining: 80
+
+                Urls remaining: 60
+
+                Urls remaining: 40
+
+                Urls remaining: 20
+
+                Urls remaining: 0
+
+        Crawling complete: CSV file named  TED n YouTube created
+
+ - IMPORTANT NOTES: 
+
+	WAIT TIME IS ADDED FOR "POLITENESS POLICY" WHILE CRAWLING. (updated from 2 seconds to 1.5 seconds) 
 	PLEASE DO NOT REDUCE IT LEST YOUTUBE THINKS YOU ARE A BOT. 
-	Code does not work with live feeds or on Playlists. 
+
+	Along with individual videos, code now also works with playlists and sorted channel videos; 
+	updated 20th March 2018 - Input method changed
+
+	Doesn't work with live videos. (It will crawl but the numbers wouldn't make sense)
 
  - TIP: 
 	Once you have the csv file from a crawl, look for videos with moderately big numbers
