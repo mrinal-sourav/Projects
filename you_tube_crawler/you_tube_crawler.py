@@ -3,12 +3,11 @@ import re
 import urllib.request 
 import time 
 import re 
-import numpy as np 
 import pandas as pd
 from collections import deque
 
 #initializing arguments and constants
-SeedUrl = input("\n\tPlease enter the seed url for the crawl: ")
+SeedUrl = input("\n\tEnter the seed url for the crawl: ")
 max_pages = int(input("\n\tEnter the number of videos to crawl: "))
 
 list_of_site_size =[]
