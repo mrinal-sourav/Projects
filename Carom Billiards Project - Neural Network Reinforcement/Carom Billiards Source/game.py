@@ -5,7 +5,7 @@ from queue import PriorityQueue
 
 # game parameter initialization:
 
-#window size
+# window size
 display_width =  720 
 display_height = 620
 
@@ -15,7 +15,7 @@ right = 400
 left = 10
 bottom = 600
 
-#colors
+# colors
 black = (0,0,0)
 white = (255,255,255)
 red = (255,0,0)
@@ -24,7 +24,7 @@ blue = (0,0,255)
 dark_green = (30,90,5) 
 
 # to keep score 
-score_board = {'score': [0, 0], 'player': ['Player-1', 'Player-2']} 
+score_board = {'score': [0, 0], 'player': ['Human Player Score', 'Select Q-ball to play']} 
 
 # game initiations:  
 pygame.init()
@@ -104,9 +104,9 @@ def text_objects(score, font):
 def message_display(score_board):
     text = pygame.font.Font('freesansbold.ttf', 20)
     text_surface_1, text_frame_1 = text_objects(score_board['player'][0] +' : '+ str(score_board['score'][0]), text)
-    text_surface_2, text_frame_2 = text_objects(score_board['player'][1] +' : '+ str(score_board['score'][1]), text)
-    text_frame_1.center = (((display_width - 100), (100)))
-    text_frame_2.center = (((display_width - 100), (125)))
+    text_surface_2, text_frame_2 = text_objects(score_board['player'][1], text)
+    text_frame_1.center = (((display_width - 150), (200)))
+    text_frame_2.center = (((display_width - 150), (225)))
     game_display.blit(text_surface_1, text_frame_1)
     game_display.blit(text_surface_2, text_frame_2) 
 

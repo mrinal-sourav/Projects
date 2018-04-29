@@ -12,17 +12,17 @@ neural_net = load_model('models/ball_size_30_light_v2.h5')
 
 # game parameter initialization:
 
-#window size
+# window size
 display_width = 720 
 display_height = 620
 
-#table boundaries
+# table boundaries
 top = 10
 right = 400
 left = 10
 bottom = 600
 
-#colors
+# colors
 black = (0,0,0)
 white = (255,255,255)
 red = (255,0,0)
@@ -31,7 +31,7 @@ blue = (0,0,255)
 dark_green = (30,90,5) 
 
 # to keep score 
-score_board = {'score': [0, 0], 'player': ['Player-1', 'Player-2']}  
+score_board = {'score': [0, 0], 'player': ['Neural Network', 'Player-2']}  
 
 # game physics 
 friction = 0.012
@@ -113,8 +113,8 @@ def message_display(score_board):
     text = pygame.font.Font('freesansbold.ttf', 20)
     text_surface_1, text_frame_1 = text_objects(score_board['player'][0] +' : '+ str(score_board['score'][0]), text)
     text_surface_2, text_frame_2 = text_objects(score_board['player'][1] +' : '+ str(score_board['score'][1]), text)
-    text_frame_1.center = (((display_width - 100), (100)))
-    text_frame_2.center = (((display_width - 100), (125)))
+    text_frame_1.center = (((display_width - 180), (225)))
+    text_frame_2.center = (((display_width - 180), (260)))
     game_display.blit(text_surface_1, text_frame_1)
     game_display.blit(text_surface_2, text_frame_2) 
 
