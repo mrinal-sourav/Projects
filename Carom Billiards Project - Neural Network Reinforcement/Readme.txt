@@ -7,7 +7,7 @@
 		import random
 		import math
 		from queue import PriorityQueue  
-	You can also play the game manually here. 
+	You can also play the game manualy here. 
 
 	"nn_test.py" uses a keras sequential model loaded from the "models" folder to predict 
 	angle and speed for the q_ball. 

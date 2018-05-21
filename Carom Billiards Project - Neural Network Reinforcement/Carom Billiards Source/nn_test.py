@@ -8,7 +8,7 @@ import h5py
 import numpy as np
 
 # load the neural network from disk
-neural_net = load_model('models/ball_size_30_light_v2.h5')
+neural_net = load_model('models/large_dataset_v2.h5')
 
 # game parameter initialization:
 
