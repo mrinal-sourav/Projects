@@ -7,8 +7,8 @@ import pandas as pd
 from collections import deque
 
 #initializing arguments and constants
-SeedUrl = input("\n\tEnter the seed url for the crawl: ")
-max_pages = int(input("\n\tEnter the number of videos to crawl: "))
+SeedUrl = input("\n Enter the seed url for the crawl: ")
+max_pages = int(input("\n Enter the number of videos to crawl: "))
 
 list_of_site_size =[]
 num_pages = 0
@@ -59,6 +59,12 @@ for link in urllist:
         title = re.findall('''<title>(.+?)</title>''',theSite,re.DOTALL)[0] 
         title = re.sub(r'\W+', ' ', title)
         
+        if re.findall('''"author":"(.+?)"''',theSite,re.DOTALL):
+            author = re.findall('''"author":"(.+?)"''',theSite,re.DOTALL)[0]
+            author = re.sub(r'\W+', ' ', author)
+        else:
+            author = 'NA'
+        
         if re.findall('''<div class="watch-view-count">(.+?) views</div>''',theSite,re.DOTALL):
             views = re.findall('''<div class="watch-view-count">(.+?) views</div>''',theSite,re.DOTALL)[0]
         else:
@@ -86,10 +92,10 @@ for link in urllist:
         if likes == dislikes or likes == 0:
             likes+=1
         score = views/(likes-dislikes)
-        row = [title, link, views, likes, dislikes, score]
+        row = [title, link, score, author, views, likes, dislikes]
         scored_list.append(row) 
         
-df = pd.DataFrame(scored_list, columns=['Title', 'URL', 'Views', 'Likes', 'Dislikes', 'Score']) 
+df = pd.DataFrame(scored_list, columns=['Title', 'URL', 'Score', 'Author', 'Views', 'Likes', 'Dislikes']) 
 df = df.sort_values('Score')
 df = df.reset_index(drop=True)  
 
