@@ -20,3 +20,6 @@
 		from keras.layers import Dense, Dropout
 		import h5py
 		import numpy as np
+
+	"nn_a_star_train.py" can be used to train a model with the methods detailed in the blog post: 
+	
