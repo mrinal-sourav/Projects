@@ -1,17 +1,8 @@
 
-C:\Users\mrinal\Documents\code_stuff\Carom Billiards Source>python nn_a_star_train.py
-C:\Users\mrinal\AppData\Local\Programs\Python\Python36\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-Using TensorFlow backend.
+
 Train on 9445953 samples, validate on 1049551 samples
 Epoch 1/100
-2018-07-18 22:14:45.341634: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\platform\cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
-2018-07-18 22:14:46.381180: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\common_runtime\gpu\gpu_device.cc:1212] Found device 0 with properties:
-name: GeForce GTX 1050 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.62
-pciBusID: 0000:01:00.0
-totalMemory: 4.00GiB freeMemory: 3.30GiB
-2018-07-18 22:14:46.389821: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\common_runtime\gpu\gpu_device.cc:1312] Adding visible gpu devices: 0
-2018-07-18 22:14:47.580830: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\common_runtime\gpu\gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3032 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:01:00.0, compute capability: 6.1)
+
 9445953/9445953 [==============================] - 18s 2us/step - loss: 322.3900 - val_loss: 312.7393
 Epoch 2/100
 9445953/9445953 [==============================] - 15s 2us/step - loss: 311.3080 - val_loss: 304.2145
@@ -536,10 +527,8 @@ Epoch 34/90
 Epoch 35/90
 9445953/9445953 [==============================] - 15s 2us/step - loss: 265.5423 - val_loss: 265.0523
 Epoch 36/90
-  36000/9445953 [..............................] - ETA: 1:59 - loss: 262.3242C:\Users\mrinal\AppData\Local\Programs\Python\Python36\lib\site-packages\keras\callbacks.py:120: UserWarning: Method on_batch_end() is slow compared to the batch update (1.181305). Check your callbacks.
-  % delta_t_median)
-  72000/9445953 [..............................] - ETA: 3:41 - loss: 261.3447C:\Users\mrinal\AppData\Local\Programs\Python\Python36\lib\site-packages\keras\callbacks.py:120: UserWarning: Method on_batch_end() is slow compared to the batch update (0.591650). Check your callbacks.
-  % delta_t_median)
+  36000/9445953 [..............................] - ETA: 1:59 - loss: 262.3242C
+
 9445953/9445953 [==============================] - 16s 2us/step - loss: 265.4032 - val_loss: 265.4084
 Epoch 37/90
 9445953/9445953 [==============================] - 15s 2us/step - loss: 265.1170 - val_loss: 265.2160
@@ -1961,5 +1950,3 @@ Epoch 100/100
  #########################  TRAINING COMPLETED  ###############################
 
 
-
-C:\Users\mrinal\Documents\code_stuff\Carom Billiards Source>

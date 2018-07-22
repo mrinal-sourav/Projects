@@ -1,17 +1,7 @@
 
-C:\Users\mrinal\Documents\code_stuff\Carom Billiards Source>python nn_a_star_train.py
-C:\Users\mrinal\AppData\Local\Programs\Python\Python36\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-Using TensorFlow backend.
 Train on 9445953 samples, validate on 1049551 samples
 Epoch 1/45
-2018-07-17 00:56:17.547195: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\platform\cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
-2018-07-17 00:56:18.546716: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\common_runtime\gpu\gpu_device.cc:1212] Found device 0 with properties:
-name: GeForce GTX 1050 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.62
-pciBusID: 0000:01:00.0
-totalMemory: 4.00GiB freeMemory: 3.30GiB
-2018-07-17 00:56:18.554078: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\common_runtime\gpu\gpu_device.cc:1312] Adding visible gpu devices: 0
-2018-07-17 00:56:19.227673: I C:\tf_jenkins\workspace\rel-win\M\windows-gpu\PY\36\tensorflow\core\common_runtime\gpu\gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3032 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:01:00.0, compute capability: 6.1)
+
 9445953/9445953 [==============================] - 26s 3us/step - loss: 302.0654 - val_loss: 287.6888
 Epoch 2/45
 9445953/9445953 [==============================] - 24s 2us/step - loss: 279.5125 - val_loss: 275.8605
