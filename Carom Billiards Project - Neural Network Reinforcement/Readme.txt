@@ -21,5 +21,6 @@
 		import h5py
 		import numpy as np
 
-	"nn_a_star_train.py" can be used to train a model with the methods detailed in the blog post: 
+	"nn_a_star_train.py" can be used to train a model with the methods detailed in the Medium blog post: 
+	https://medium.com/@amidst.mrnl/a-optimization-over-epochs-and-batch-size-for-bias-variance-trade-off-in-machine-learning-925428502843
 	
