@@ -16,7 +16,7 @@
 
  - Outputs: 
 	A sorted csv file with video data in the following format:
-		Video Title, Video link, Likes, Dislikes, Score 
+		Video Title, Video link, Score, Author, Views, Likes, Dislikes 
 
 	
 	Score is calculated by the ratio of:
