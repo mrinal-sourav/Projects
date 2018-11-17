@@ -19,7 +19,7 @@
 		Video Title, Video link, Score, Author, Views, Likes, Dislikes 
 
 	
-	Score is calculated by the ratio of:
+	Score is calculated by the ratio:
 
 		No. of Views / (Likes - Dislikes)
 
@@ -61,7 +61,7 @@
 	Doesn't work with live videos. (It will crawl but the numbers wouldn't make sense)
 
  - TIP: 
-	Once you have the csv file from a crawl, look for videos with moderately big numbers
+	Once you have the csv file from a crawl, look for videos with relatively large views 
 	that appear towards the top. 
 
 
