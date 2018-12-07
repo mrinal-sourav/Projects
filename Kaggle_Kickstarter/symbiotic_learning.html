@@ -11781,7 +11781,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11793,32 +11793,12 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">random</span> <span class="k">import</span> <span class="n">randint</span>
 
 <span class="c1"># keras imports for neural network</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">load_model</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
 <span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">optimizers</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>c:\users\mrinal\appdata\local\programs\python\python36\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-Using TensorFlow backend.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -12349,7 +12329,7 @@ Name: state, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this function calculates the probability distribution of the unique items for a specified column in a dataframe</span>
@@ -12537,7 +12517,7 @@ Name: state, dtype: int64</pre>
             <span class="n">probability</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
             <span class="n">new_entropy</span> <span class="o">+=</span> <span class="n">probability</span> <span class="o">*</span> <span class="n">get_entropy</span><span class="p">(</span><span class="n">get_probabilities</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
         <span class="n">info_gain</span> <span class="o">=</span> <span class="n">initial_entropy</span> <span class="o">-</span> <span class="n">new_entropy</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="n">info_gain</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
+        <span class="c1">#print (info_gain, feature)</span>
         <span class="k">if</span> <span class="n">info_gain</span> <span class="o">&gt;</span> <span class="n">best_gain</span><span class="p">:</span>
             <span class="n">best_gain</span> <span class="o">=</span> <span class="n">info_gain</span>
             <span class="n">best_feature</span> <span class="o">=</span> <span class="n">feature</span>
@@ -12612,7 +12592,7 @@ Nonetheless, there is some correlation and some information gain.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># returns true if there is only one label in the target field </span>
@@ -12703,11 +12683,12 @@ Nonetheless, there is some correlation and some information gain.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to predict using the decision tree</span>
 <span class="k">def</span> <span class="nf">partial_predict</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+    <span class="n">probabs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">first_dict</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
     <span class="n">second_dict</span> <span class="o">=</span> <span class="n">tree</span><span class="p">[</span><span class="n">first_dict</span><span class="p">]</span>
     <span class="n">feat_value</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">first_dict</span><span class="p">]</span>
@@ -12891,7 +12872,7 @@ Nonetheless, there is some correlation and some information gain.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to translate a predicted distribution (a dictionary) to its corresponding numpy version</span>
@@ -13044,7 +13025,7 @@ Nonetheless, there is some correlation and some information gain.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to get partial predictions from the categorical data in the entire dataframe</span>
@@ -13639,7 +13620,7 @@ Nonetheless, there is some correlation and some information gain.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[425]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to translate the state into integers for one-hot encoding</span>
@@ -13898,7 +13879,7 @@ Epoch 12/12
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[458]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># helper function to convert dates to num_days</span>
@@ -14342,8 +14323,586 @@ Epoch 12/12
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1> OVERALL RESULTS ON THE ENTIRE DATASET </h1><h2> True Positive Count = 331638   |    True Positive Percentage = 87.5 % </h2> 
+<h1> OVERALL RESULTS ON THE ENTIRE TRAINING DATASET </h1><h2> True Positive Count = 331638   |    True Positive Percentage = 87.5 % </h2> 
    <h2> False Negative Count = 47023   |    False Negative Percentage = 12.4 % </h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><h1> FOUND ANOTHER FILE IN THE KAGGLE DATASET !!</h1> <br></p>
+<h2> I choose to load this file as the TEST dataset to test the paired models </h2> <br>
+
+<h2><b> There's a catch : </b> </h2>
+<h2> Unlike the training dataset, this test dataset does not have currency converted columns </h2>
+<h2> So, I will select only the 'USD' currency rows for the test </h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;test_2.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>c:\users\mrinal\appdata\local\programs\python\python36\lib\site-packages\IPython\core\interactiveshell.py:2728: DtypeWarning: Columns (13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+  interactivity=interactivity, compiler=compiler, result=result)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[67]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>Unnamed: 13</th>
+      <th>Unnamed: 14</th>
+      <th>Unnamed: 15</th>
+      <th>Unnamed: 16</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000002330</td>
+      <td>The Songs of Adelaide &amp; Abullah</td>
+      <td>Poetry</td>
+      <td>Publishing</td>
+      <td>GBP</td>
+      <td>2015-10-09 11:36:00</td>
+      <td>1000</td>
+      <td>2015-08-11 12:12:28</td>
+      <td>0</td>
+      <td>failed</td>
+      <td>0</td>
+      <td>GB</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000004038</td>
+      <td>Where is Hank?</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2013-02-26 00:20:50</td>
+      <td>45000</td>
+      <td>2013-01-12 00:20:50</td>
+      <td>220</td>
+      <td>failed</td>
+      <td>3</td>
+      <td>US</td>
+      <td>220</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000007540</td>
+      <td>ToshiCapital Rekordz Needs Help to Complete Album</td>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>2012-04-16 04:24:11</td>
+      <td>5000</td>
+      <td>2012-03-17 03:24:11</td>
+      <td>1</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>US</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000011046</td>
+      <td>Community Film Project: The Art of Neighborhoo...</td>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2015-08-29 01:00:00</td>
+      <td>19500</td>
+      <td>2015-07-04 08:35:03</td>
+      <td>1283</td>
+      <td>canceled</td>
+      <td>14</td>
+      <td>US</td>
+      <td>1283</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000014025</td>
+      <td>Monarch Espresso Bar</td>
+      <td>Restaurants</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>2016-04-01 13:38:27</td>
+      <td>50000</td>
+      <td>2016-02-26 13:38:27</td>
+      <td>52375</td>
+      <td>successful</td>
+      <td>224</td>
+      <td>US</td>
+      <td>52375</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3> The columns need cleaning (undo trailing space) and some manipulation <br>
+        (convert 'usd_pledged' to 'usd_pledged_real' | convert 'goal' to 'usd_goal_real')  </h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;main_category&#39;</span><span class="p">,</span> <span class="s1">&#39;currency&#39;</span><span class="p">,</span> <span class="s1">&#39;deadline&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;usd_goal_real&#39;</span><span class="p">,</span> <span class="s1">&#39;launched&#39;</span><span class="p">,</span> <span class="s1">&#39;pledged&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;backers&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;usd_pledged_real&#39;</span><span class="p">,</span> <span class="s1">&#39;Unnamed: 13&#39;</span><span class="p">,</span> <span class="s1">&#39;Unnamed: 14&#39;</span><span class="p">,</span> <span class="s1">&#39;Unnamed: 15&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Unnamed: 16&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_us</span> <span class="o">=</span> <span class="n">test</span><span class="p">[(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;USD&#39;</span><span class="p">)]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_us</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[70]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>usd_goal_real</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd_pledged_real</th>
+      <th>Unnamed: 13</th>
+      <th>Unnamed: 14</th>
+      <th>Unnamed: 15</th>
+      <th>Unnamed: 16</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1000004038</td>
+      <td>Where is Hank?</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2013-02-26 00:20:50</td>
+      <td>45000</td>
+      <td>2013-01-12 00:20:50</td>
+      <td>220</td>
+      <td>failed</td>
+      <td>3</td>
+      <td>US</td>
+      <td>220</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000007540</td>
+      <td>ToshiCapital Rekordz Needs Help to Complete Album</td>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>2012-04-16 04:24:11</td>
+      <td>5000</td>
+      <td>2012-03-17 03:24:11</td>
+      <td>1</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>US</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000011046</td>
+      <td>Community Film Project: The Art of Neighborhoo...</td>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2015-08-29 01:00:00</td>
+      <td>19500</td>
+      <td>2015-07-04 08:35:03</td>
+      <td>1283</td>
+      <td>canceled</td>
+      <td>14</td>
+      <td>US</td>
+      <td>1283</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000014025</td>
+      <td>Monarch Espresso Bar</td>
+      <td>Restaurants</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>2016-04-01 13:38:27</td>
+      <td>50000</td>
+      <td>2016-02-26 13:38:27</td>
+      <td>52375</td>
+      <td>successful</td>
+      <td>224</td>
+      <td>US</td>
+      <td>52375</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1000023410</td>
+      <td>Support Solar Roasted Coffee &amp; Green Energy!  ...</td>
+      <td>Food</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>2014-12-21 18:30:44</td>
+      <td>1000</td>
+      <td>2014-12-01 18:30:44</td>
+      <td>1205</td>
+      <td>successful</td>
+      <td>16</td>
+      <td>US</td>
+      <td>1205</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">test_us</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[71]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>260298</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2> I can now use this data for the testing </h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;nn_model.h5&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_tree</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;decision_tree_2.txt&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">test_us</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">d_tree</span><span class="p">,</span> <span class="n">model</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># printing data from results</span>
+
+<span class="n">predicted</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span> 
+<span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span> 
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;predicted&#39;</span><span class="p">:</span> <span class="n">predicted</span><span class="p">,</span> <span class="s1">&#39;expected&#39;</span><span class="p">:</span><span class="n">expected</span><span class="p">}</span>
+
+<span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;predicted&#39;</span><span class="p">,</span> <span class="s1">&#39;expected&#39;</span><span class="p">])</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">result_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;predicted&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;expected&#39;</span><span class="p">])]</span>
+<span class="n">match_percentage</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">result_df</span><span class="p">)</span>
+<span class="n">false_negatives</span> <span class="o">=</span>  <span class="n">result_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;predicted&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">result_df</span><span class="p">[</span><span class="s1">&#39;expected&#39;</span><span class="p">])]</span>
+<span class="n">fail_percentage</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">false_negatives</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_df</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">match_percentage</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fail_percentage</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.8647626950648871
+0.13523730493511282
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1> THE ACCURACY NOW IS 86.47% </h1>
 </div>
 </div>
 </div>
