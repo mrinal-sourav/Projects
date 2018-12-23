@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>kernel</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>d-tree-nn-symbiotic-learning-83</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11781,7 +11781,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11803,12 +11803,32 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>c:\users\mrinal\appdata\local\programs\python\python36\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2> Data Preparation for training and testing </h2><p>I see two dasets available in the task: <br>
+<h2> Data Preparation for training and testing </h2><p>I see two datasets available in the task: <br>
 One seems to be from 2016, without currency conversion to USD. <br> 
 Another is from 2018 with some newly added records</p>
 
@@ -11817,10 +11837,10 @@ Another is from 2018 with some newly added records</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_2016</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/ks-projects-201612.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_2016</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;inputs/ks-projects-201612.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">)</span>
 <span class="n">kick_start_2016</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -11828,13 +11848,184 @@ Another is from 2018 with some newly added records</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>c:\users\mrinal\appdata\local\programs\python\python36\lib\site-packages\IPython\core\interactiveshell.py:2728: DtypeWarning: Columns (13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+  interactivity=interactivity, compiler=compiler, result=result)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>Unnamed: 13</th>
+      <th>Unnamed: 14</th>
+      <th>Unnamed: 15</th>
+      <th>Unnamed: 16</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000002330</td>
+      <td>The Songs of Adelaide &amp; Abullah</td>
+      <td>Poetry</td>
+      <td>Publishing</td>
+      <td>GBP</td>
+      <td>2015-10-09 11:36:00</td>
+      <td>1000</td>
+      <td>2015-08-11 12:12:28</td>
+      <td>0</td>
+      <td>failed</td>
+      <td>0</td>
+      <td>GB</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000004038</td>
+      <td>Where is Hank?</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2013-02-26 00:20:50</td>
+      <td>45000</td>
+      <td>2013-01-12 00:20:50</td>
+      <td>220</td>
+      <td>failed</td>
+      <td>3</td>
+      <td>US</td>
+      <td>220</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000007540</td>
+      <td>ToshiCapital Rekordz Needs Help to Complete Album</td>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>2012-04-16 04:24:11</td>
+      <td>5000</td>
+      <td>2012-03-17 03:24:11</td>
+      <td>1</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>US</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000011046</td>
+      <td>Community Film Project: The Art of Neighborhoo...</td>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2015-08-29 01:00:00</td>
+      <td>19500</td>
+      <td>2015-07-04 08:35:03</td>
+      <td>1283</td>
+      <td>canceled</td>
+      <td>14</td>
+      <td>US</td>
+      <td>1283</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000014025</td>
+      <td>Monarch Espresso Bar</td>
+      <td>Restaurants</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>2016-04-01 13:38:27</td>
+      <td>50000</td>
+      <td>2016-02-26 13:38:27</td>
+      <td>52375</td>
+      <td>successful</td>
+      <td>224</td>
+      <td>US</td>
+      <td>52375</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_2018</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/ks-projects-201801.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_2018</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;inputs/ks-projects-201801.csv&#39;</span><span class="p">)</span>
 <span class="n">kick_start_2018</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -11842,10 +12033,157 @@ Another is from 2018 with some newly added records</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>usd_pledged_real</th>
+      <th>usd_goal_real</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000002330</td>
+      <td>The Songs of Adelaide &amp; Abullah</td>
+      <td>Poetry</td>
+      <td>Publishing</td>
+      <td>GBP</td>
+      <td>2015-10-09</td>
+      <td>1000.0</td>
+      <td>2015-08-11 12:12:28</td>
+      <td>0.0</td>
+      <td>failed</td>
+      <td>0</td>
+      <td>GB</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1533.95</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000003930</td>
+      <td>Greeting From Earth: ZGAC Arts Capsule For ET</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-11-01</td>
+      <td>30000.0</td>
+      <td>2017-09-02 04:43:57</td>
+      <td>2421.0</td>
+      <td>failed</td>
+      <td>15</td>
+      <td>US</td>
+      <td>100.0</td>
+      <td>2421.0</td>
+      <td>30000.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000004038</td>
+      <td>Where is Hank?</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2013-02-26</td>
+      <td>45000.0</td>
+      <td>2013-01-12 00:20:50</td>
+      <td>220.0</td>
+      <td>failed</td>
+      <td>3</td>
+      <td>US</td>
+      <td>220.0</td>
+      <td>220.0</td>
+      <td>45000.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000007540</td>
+      <td>ToshiCapital Rekordz Needs Help to Complete Album</td>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>2012-04-16</td>
+      <td>5000.0</td>
+      <td>2012-03-17 03:24:11</td>
+      <td>1.0</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>US</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>5000.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000011046</td>
+      <td>Community Film Project: The Art of Neighborhoo...</td>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2015-08-29</td>
+      <td>19500.0</td>
+      <td>2015-07-04 08:35:03</td>
+      <td>1283.0</td>
+      <td>canceled</td>
+      <td>14</td>
+      <td>US</td>
+      <td>1283.0</td>
+      <td>1283.0</td>
+      <td>19500.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kick_start_2018</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">kick_start_2016</span><span class="p">))</span>
@@ -11855,12 +12193,30 @@ Another is from 2018 with some newly added records</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>54911
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3> So, there are 54911 more records in 2018 data than 2016 data </h3><p>These records may be ideal for testing. <br> 
+<h3> So, there are 54911 more records in 2018 data than 2016 data </h3><p><h3>These records may be ideal for testing. </h3> <br> 
 I will now extract only those records from 2018 data that also exist in 2016 using the ID field.<br>
 But first, the 2016 data needs renaming the columns labels (removing trailing spaces etc.) to bring it to the same format as 2018 data.</p>
 
@@ -11869,7 +12225,7 @@ But first, the 2016 data needs renaming the columns labels (removing trailing sp
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_2016</span><span class="o">.</span><span class="n">columns</span>
@@ -11879,10 +12235,34 @@ But first, the 2016 data needs renaming the columns labels (removing trailing sp
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;ID &#39;, &#39;name &#39;, &#39;category &#39;, &#39;main_category &#39;, &#39;currency &#39;, &#39;deadline &#39;,
+       &#39;goal &#39;, &#39;launched &#39;, &#39;pledged &#39;, &#39;state &#39;, &#39;backers &#39;, &#39;country &#39;,
+       &#39;usd pledged &#39;, &#39;Unnamed: 13&#39;, &#39;Unnamed: 14&#39;, &#39;Unnamed: 15&#39;,
+       &#39;Unnamed: 16&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_2018</span><span class="o">.</span><span class="n">columns</span>
@@ -11892,10 +12272,33 @@ But first, the 2016 data needs renaming the columns labels (removing trailing sp
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;ID&#39;, &#39;name&#39;, &#39;category&#39;, &#39;main_category&#39;, &#39;currency&#39;, &#39;deadline&#39;,
+       &#39;goal&#39;, &#39;launched&#39;, &#39;pledged&#39;, &#39;state&#39;, &#39;backers&#39;, &#39;country&#39;,
+       &#39;usd pledged&#39;, &#39;usd_pledged_real&#39;, &#39;usd_goal_real&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># renaming the 2016 data columns</span>
@@ -11916,14 +12319,14 @@ But first, the 2016 data needs renaming the columns labels (removing trailing sp
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h3> Extracting what is common to both datasets, in 2018 data. <br>
 This will be used to train the decision tree and the neural network. <br>
-I have mentioned how to conbine both these models for both training and testing in the overall strategy further below.<h3></p>
+I have mentioned how to combine both these models for both training and testing in the overall strategy further below.<h3></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_common</span> <span class="o">=</span> <span class="n">kick_start_2018</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">kick_start_2018</span><span class="o">.</span><span class="n">ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kick_start_2016</span><span class="o">.</span><span class="n">ID</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -11934,16 +12337,183 @@ I have mentioned how to conbine both these models for both training and testing 
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>323750</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_common</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>usd_pledged_real</th>
+      <th>usd_goal_real</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000002330</td>
+      <td>The Songs of Adelaide &amp; Abullah</td>
+      <td>Poetry</td>
+      <td>Publishing</td>
+      <td>GBP</td>
+      <td>2015-10-09</td>
+      <td>1000.0</td>
+      <td>2015-08-11 12:12:28</td>
+      <td>0.0</td>
+      <td>failed</td>
+      <td>0</td>
+      <td>GB</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1533.95</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000004038</td>
+      <td>Where is Hank?</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2013-02-26</td>
+      <td>45000.0</td>
+      <td>2013-01-12 00:20:50</td>
+      <td>220.0</td>
+      <td>failed</td>
+      <td>3</td>
+      <td>US</td>
+      <td>220.0</td>
+      <td>220.0</td>
+      <td>45000.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000007540</td>
+      <td>ToshiCapital Rekordz Needs Help to Complete Album</td>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>2012-04-16</td>
+      <td>5000.0</td>
+      <td>2012-03-17 03:24:11</td>
+      <td>1.0</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>US</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>5000.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000011046</td>
+      <td>Community Film Project: The Art of Neighborhoo...</td>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2015-08-29</td>
+      <td>19500.0</td>
+      <td>2015-07-04 08:35:03</td>
+      <td>1283.0</td>
+      <td>canceled</td>
+      <td>14</td>
+      <td>US</td>
+      <td>1283.0</td>
+      <td>1283.0</td>
+      <td>19500.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000014025</td>
+      <td>Monarch Espresso Bar</td>
+      <td>Restaurants</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>2016-04-01</td>
+      <td>50000.0</td>
+      <td>2016-02-26 13:38:27</td>
+      <td>52375.0</td>
+      <td>successful</td>
+      <td>224</td>
+      <td>US</td>
+      <td>52375.0</td>
+      <td>52375.0</td>
+      <td>50000.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -11960,7 +12530,7 @@ I have mentioned how to conbine both these models for both training and testing 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_unique</span> <span class="o">=</span> <span class="n">kick_start_2018</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">-</span><span class="n">kick_start_2018</span><span class="o">.</span><span class="n">ID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kick_start_2016</span><span class="o">.</span><span class="n">ID</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -11971,10 +12541,30 @@ I have mentioned how to conbine both these models for both training and testing 
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>54911</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_unique</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -11984,18 +12574,165 @@ I have mentioned how to conbine both these models for both training and testing 
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>usd_pledged_real</th>
+      <th>usd_goal_real</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000003930</td>
+      <td>Greeting From Earth: ZGAC Arts Capsule For ET</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-11-01</td>
+      <td>30000.0</td>
+      <td>2017-09-02 04:43:57</td>
+      <td>2421.00</td>
+      <td>failed</td>
+      <td>15</td>
+      <td>US</td>
+      <td>100.00</td>
+      <td>2421.00</td>
+      <td>30000.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000057089</td>
+      <td>Tombstone: Old West tabletop game and miniatur...</td>
+      <td>Tabletop Games</td>
+      <td>Games</td>
+      <td>GBP</td>
+      <td>2017-05-03</td>
+      <td>5000.0</td>
+      <td>2017-04-05 19:44:18</td>
+      <td>94175.00</td>
+      <td>successful</td>
+      <td>761</td>
+      <td>GB</td>
+      <td>57763.78</td>
+      <td>121857.33</td>
+      <td>6469.73</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000081649</td>
+      <td>MikeyJ clothing brand fundraiser</td>
+      <td>Childrenswear</td>
+      <td>Fashion</td>
+      <td>AUD</td>
+      <td>2017-09-07</td>
+      <td>2500.0</td>
+      <td>2017-08-08 01:20:20</td>
+      <td>1.00</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>AU</td>
+      <td>0.00</td>
+      <td>0.81</td>
+      <td>2026.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100011318</td>
+      <td>My Moon - Animated Short Film</td>
+      <td>Animation</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-05-03</td>
+      <td>50000.0</td>
+      <td>2017-04-03 17:11:33</td>
+      <td>57577.31</td>
+      <td>successful</td>
+      <td>840</td>
+      <td>US</td>
+      <td>10120.00</td>
+      <td>57577.31</td>
+      <td>50000.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000149007</td>
+      <td>Unschooling To University Book Project</td>
+      <td>Nonfiction</td>
+      <td>Publishing</td>
+      <td>CAD</td>
+      <td>2018-01-19</td>
+      <td>3000.0</td>
+      <td>2017-11-20 18:15:14</td>
+      <td>592.00</td>
+      <td>live</td>
+      <td>24</td>
+      <td>CA</td>
+      <td>185.65</td>
+      <td>472.88</td>
+      <td>2396.36</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2> Lets focus on the training dataaset for now and visualize some of its aspects. </h2>
+<h2> Lets focus on the training dataset for now and visualize some of its aspects. </h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start</span> <span class="o">=</span> <span class="n">kick_start_common</span>
@@ -12008,13 +12745,34 @@ I have mentioned how to conbine both these models for both training and testing 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;failed&#39;, &#39;canceled&#39;, &#39;successful&#39;, &#39;undefined&#39;, &#39;suspended&#39;,
+       &#39;live&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12030,13 +12788,48 @@ I have mentioned how to conbine both these models for both training and testing 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">kick_start</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x19b1c589d68&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12053,7 +12846,7 @@ So, I convert those dates and bring them to "No. of days" format.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">kick_start</span><span class="p">[</span><span class="s2">&quot;deadline&quot;</span><span class="p">])</span>
@@ -12069,10 +12862,30 @@ So, I convert those dates and bring them to "No. of days" format.</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 days 00:07:17
+34 days 04:46:57.291894
+16738 days 23:00:00
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_days</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">days</span><span class="p">))</span>
@@ -12080,6 +12893,41 @@ So, I convert those dates and bring them to "No. of days" format.</p>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x19b2822a550&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12098,12 +12946,12 @@ So, I convert those dates and bring them to "No. of days" format.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3> Overall strategy for training</h3><p>I will select certain fields (mostly categorical) to feed to a Decision Tree model to reduce entropy in the data. This will  also include the "No. of days to deadline" computed above.</p>
-<p>If the decision tree returns some good results and is able to reduce entropy by looking at just the categorical data (<b>without the $amounts, backers etc. </b>), I will output the probability distribution of states as the "partial" predictions from this tree.</p>
-<p>, I will concatenate these partial predictions with the rest of the columns ($amounts, backers etc.) to create a "feature vector". <br>
+<p>If the decision tree returns some good results and is able to reduce entropy by looking at just the categorical data (<b>without the $amounts, backers etc. </b>), I will get the probability distribution of states as the "partial" predictions from this tree.</p>
+<p>Next, I will concatenate these partial predictions with the rest of the columns ($amounts, backers etc.) to create a "feature vector". <br>
 This feature vector would then go as inputs to a neural network for further training. <br></p>
 <p>So, even while testing, predictions will be broken down to two parts, first to recieve partial predictions from the decision tree and then to get the final predictions from the neural network.</p>
 <p><b> The intuition is to use the Decision Tree to handle entropy in the categorical data and reduce the non-linearity / dimensions for the neural network to achieve better learning. </b></p>
-<p>Since I need the probability distributions from the decision tree, I am implementing a decision tree based on ID3 algorithm for this purpose.</p>
+<p>Since I need the probability distributions from the decision tree, I am implementing a decision tree based on<a href="https://en.wikipedia.org/wiki/ID3_algorithm"> ID3 algorithm </a>for this purpose.</p>
 
 </div>
 </div>
@@ -12125,7 +12973,7 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt_kstart</span> <span class="o">=</span> <span class="n">kick_start</span><span class="p">[[</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="s1">&#39;main_category&#39;</span><span class="p">,</span> <span class="s1">&#39;currency&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]]</span>
@@ -12136,10 +12984,33 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>c:\users\mrinal\appdata\local\programs\python\python36\lib\site-packages\ipykernel_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt_kstart</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -12149,10 +13020,36 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>failed        171203
+successful    114789
+canceled       32702
+undefined       3562
+suspended       1492
+live               2
+Name: state, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this function calculates the probability distribution of the unique items for a specified column in a dataframe</span>
@@ -12168,7 +13065,7 @@ This feature vector would then go as inputs to a neural network for further trai
 
 <span class="c1"># to return the entropy given the probability distribution    </span>
 <span class="k">def</span> <span class="nf">get_entropy</span><span class="p">(</span><span class="n">probabilities</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">probabilities</span> <span class="o">*</span> <span class="n">probabilities</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ln</span><span class="p">))</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">probabilities</span> <span class="o">*</span> <span class="n">probabilities</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ln</span><span class="p">))</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>       <span class="c1"># Claude Elwood Shannon</span>
 </pre></div>
 
 </div>
@@ -12178,7 +13075,7 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Initial entropy of the &#39;state&#39; column in the training data</span>
@@ -12189,10 +13086,30 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.4579962179445682</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt_kstart</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12202,10 +13119,103 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[21]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>country</th>
+      <th>state</th>
+      <th>num_days</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Poetry</td>
+      <td>Publishing</td>
+      <td>GBP</td>
+      <td>GB</td>
+      <td>failed</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>US</td>
+      <td>failed</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>US</td>
+      <td>failed</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>US</td>
+      <td>canceled</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Restaurants</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>US</td>
+      <td>successful</td>
+      <td>34</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># splitting a data-frame, on an index/column and value </span>
@@ -12214,7 +13224,7 @@ This feature vector would then go as inputs to a neural network for further trai
     <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span><span class="p">]</span>
 
 <span class="c1"># to get the best feature based on information gain </span>
-<span class="k">def</span> <span class="nf">get_best_feature</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_best_feature</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">to_print</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">initial_entropy</span> <span class="o">=</span> <span class="n">get_entropy</span><span class="p">(</span><span class="n">get_probabilities</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
     <span class="n">best_gain</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">best_feature</span> <span class="o">=</span> <span class="kc">None</span>
@@ -12228,7 +13238,8 @@ This feature vector would then go as inputs to a neural network for further trai
             <span class="n">probability</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
             <span class="n">new_entropy</span> <span class="o">+=</span> <span class="n">probability</span> <span class="o">*</span> <span class="n">get_entropy</span><span class="p">(</span><span class="n">get_probabilities</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
         <span class="n">info_gain</span> <span class="o">=</span> <span class="n">initial_entropy</span> <span class="o">-</span> <span class="n">new_entropy</span>
-        <span class="c1"># print (info_gain, feature)</span>
+        <span class="k">if</span> <span class="n">to_print</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">info_gain</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">info_gain</span> <span class="o">&gt;</span> <span class="n">best_gain</span><span class="p">:</span>
             <span class="n">best_gain</span> <span class="o">=</span> <span class="n">info_gain</span>
             <span class="n">best_feature</span> <span class="o">=</span> <span class="n">feature</span>
@@ -12243,13 +13254,48 @@ This feature vector would then go as inputs to a neural network for further trai
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_best_feature</span><span class="p">(</span><span class="n">dt_kstart</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_best_feature</span><span class="p">(</span><span class="n">dt_kstart</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.11642136016126248 category
+0.0567531938487531 main_category
+0.0072016819468441184 currency
+0.09063503898205139 country
+0.02998172295675361 num_days
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;category&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12267,7 +13313,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># returns true if there is only one label in the target field </span>
@@ -12279,7 +13325,7 @@ Though the output of this decision tree is a probability distribution, I still l
     <span class="k">if</span> <span class="n">is_pure</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;state&#39;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">get_probabilities</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">))}</span>
     
-    <span class="c1">#condition for leaf nodes</span>
+    <span class="c1"># condition for leaf nodes</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
         <span class="n">features</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
@@ -12314,7 +13360,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># start time</span>
@@ -12324,7 +13370,7 @@ Though the output of this decision tree is a probability distribution, I still l
 <span class="n">d_tree</span> <span class="o">=</span> <span class="n">create_tree</span><span class="p">(</span><span class="n">dt_kstart</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">)</span>
 
 <span class="c1"># saving the dictionary</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/kaggle/working/decision_tree.txt&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;decision_tree.txt&#39;</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d_tree</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
     
@@ -12338,10 +13384,28 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Creating the Decision Tree took close to 3.3923719378828547 minutes
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># loading the tree</span>
@@ -12349,7 +13413,7 @@ Though the output of this decision tree is a probability distribution, I still l
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-<span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/decision_tree.txt&#39;</span><span class="p">)</span>
+<span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;decision_tree.txt&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12359,11 +13423,11 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to predict a single instance of a feature using the decision tree</span>
-<span class="c1"># inputs: the tree; feature of type pandas.Series.series</span>
+<span class="c1"># inputs: the tree; an instance of features of type pandas.Series.series</span>
 <span class="c1"># returns: the probability distribution of the states as a dictionary</span>
 <span class="k">def</span> <span class="nf">partial_predict</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
     <span class="n">probabs</span> <span class="o">=</span> <span class="p">{}</span>
@@ -12394,7 +13458,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dt_kstart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">89</span><span class="p">])</span>
@@ -12405,10 +13469,35 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;category&#39;: &#39;Restaurants&#39;,
+ &#39;country&#39;: &#39;US&#39;,
+ &#39;currency&#39;: &#39;USD&#39;,
+ &#39;main_category&#39;: &#39;Food&#39;,
+ &#39;num_days&#39;: &#39;59&#39;,
+ &#39;state&#39;: &#39;failed&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">partial_predict</span><span class="p">(</span><span class="n">d_tree</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
@@ -12418,10 +13507,33 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;canceled&#39;: 0.1394422310756972,
+ &#39;failed&#39;: 0.8127490039840638,
+ &#39;successful&#39;: 0.043824701195219126,
+ &#39;suspended&#39;: 0.00398406374501992}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># retrieving data from the tree</span>
@@ -12429,6 +13541,29 @@ Though the output of this decision tree is a probability distribution, I still l
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;state&#39;: {&#39;canceled&#39;: 0.1394422310756972,
+  &#39;failed&#39;: 0.8127490039840638,
+  &#39;successful&#39;: 0.043824701195219126,
+  &#39;suspended&#39;: 0.00398406374501992}}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12443,12 +13578,12 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to translate a predicted distribution (a dictionary) to its corresponding numpy version</span>
 <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">distribution</span><span class="p">):</span>
-    <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">6</span><span class="p">])</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">6</span><span class="p">])</span>
     <span class="c1"># to hardcode positions in the numpy array </span>
     <span class="n">positions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;failed&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> 
                  <span class="s1">&#39;successful&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> 
@@ -12459,8 +13594,6 @@ Though the output of this decision tree is a probability distribution, I still l
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">distribution</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">array</span><span class="p">[</span><span class="n">positions</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span> <span class="o">=</span> <span class="n">distribution</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">array</span><span class="p">[</span><span class="n">positions</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span> 
     <span class="k">return</span> <span class="n">array</span>
 </pre></div>
 
@@ -12471,7 +13604,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">partial_predict</span><span class="p">(</span><span class="n">d_tree</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="c1">#same example as above</span>
@@ -12484,10 +13617,29 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;failed&#39;: 0.8127490039840638, &#39;canceled&#39;: 0.1394422310756972, &#39;successful&#39;: 0.043824701195219126, &#39;suspended&#39;: 0.00398406374501992}
+[0.812749   0.0438247  0.13944223 0.         0.         0.00398406]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># since this is a probability distribution, all entries must sum to 1 </span>
@@ -12495,6 +13647,26 @@ Though the output of this decision tree is a probability distribution, I still l
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12509,7 +13681,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_predict</span> <span class="o">=</span> <span class="n">dt_kstart</span>
@@ -12522,7 +13694,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to get predictions for an entire dataframe</span>
@@ -12543,7 +13715,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
@@ -12555,6 +13727,25 @@ Though the output of this decision tree is a probability distribution, I still l
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(323750, 6)
+This process took 53.99899200082706 seconds
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12571,8 +13762,8 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2> We now prepare the training dataset for the neural network </h2><p>As was mentioned earlier, the neural network needs the probability distributions from the tree and the remaining numerical columns.</p>
-<p>So the inputs to the tree would be:</p>
+<h2> Preparing training dataset for the neural network </h2><p>As was mentioned earlier, the neural network needs the probability distributions from the tree and the remaining numerical columns.</p>
+<p>So the inputs to the neural net. would be:</p>
 <ul>
     <li> Probability Distributions from the decision tree (length = 6) </li>
     <li> backers </li>
@@ -12587,13 +13778,13 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2> We first concatenate the partial prediction to the remaining (numeric) fields in the dataset </h2>
+<h2> Concatenate the partial prediction to the remaining (numeric) fields in the dataset </h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">nn_train_part1</span> <span class="o">=</span> <span class="n">part_predict</span>
@@ -12607,10 +13798,29 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(323750, 6)
+(323750, 3)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">nn_inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">nn_train_part1</span><span class="p">,</span> <span class="n">nn_train_part2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -12621,14 +13831,32 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(323750, 9)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#save the training_inputs for the neural network</span>
-<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/nn_inputs&#39;</span><span class="p">,</span> <span class="n">nn_inputs</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># save the training_inputs for the neural network</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;nn_inputs&#39;</span><span class="p">,</span> <span class="n">nn_inputs</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12638,7 +13866,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># for the targets of the neural network</span>
@@ -12650,10 +13878,30 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[40]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(323750,)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># to translate the state into integers for one-hot encoding</span>
@@ -12677,7 +13925,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">translated</span> <span class="o">=</span> <span class="n">translate_states</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
@@ -12688,10 +13936,30 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[42]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 0, 0, 2, 1, 1, 0, 2, 2, 0], dtype=int8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># One hot encoding</span>
@@ -12706,7 +13974,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_hot_targets</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
@@ -12716,14 +13984,43 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[44]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1., 0., 0., 0., 0., 0.],
+       [1., 0., 0., 0., 0., 0.],
+       [1., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0.],
+       [0., 1., 0., 0., 0., 0.],
+       [0., 1., 0., 0., 0., 0.],
+       [1., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0.],
+       [1., 0., 0., 0., 0., 0.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># saving the targets for the neural network</span>
-<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/one_hot_targets&#39;</span><span class="p">,</span> <span class="n">one_hot_targets</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;one_hot_targets&#39;</span><span class="p">,</span> <span class="n">one_hot_targets</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12742,11 +14039,11 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/nn_inputs.npy&#39;</span><span class="p">)</span>
-<span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/one_hot_targets.npy&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;nn_inputs.npy&#39;</span><span class="p">)</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;one_hot_targets.npy&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12756,13 +14053,13 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;softmax&#39;</span><span class="p">))</span> 
 
@@ -12775,13 +14072,56 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Train on 291375 samples, validate on 32375 samples
+Epoch 1/6
+291375/291375 [==============================] - 27s 93us/step - loss: 0.1378 - acc: 0.9529 - val_loss: 0.1213 - val_acc: 0.9604
+Epoch 2/6
+291375/291375 [==============================] - 19s 64us/step - loss: 0.1188 - acc: 0.9609 - val_loss: 0.1182 - val_acc: 0.9610
+Epoch 3/6
+291375/291375 [==============================] - 17s 60us/step - loss: 0.1186 - acc: 0.9609 - val_loss: 0.1185 - val_acc: 0.9609
+Epoch 4/6
+291375/291375 [==============================] - 16s 55us/step - loss: 0.1185 - acc: 0.9609 - val_loss: 0.1187 - val_acc: 0.9609
+Epoch 5/6
+291375/291375 [==============================] - 19s 66us/step - loss: 0.1182 - acc: 0.9610 - val_loss: 0.1184 - val_acc: 0.9609
+Epoch 6/6
+291375/291375 [==============================] - 17s 57us/step - loss: 0.1177 - acc: 0.9611 - val_loss: 0.1184 - val_acc: 0.9610
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[47]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;keras.callbacks.History at 0x19b15287710&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/nn_model.h5&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;nn_model.h5&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12791,7 +14131,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># helper function to convert dates to num_days</span>
@@ -12844,7 +14184,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># test an i&#39;th row in the dataset</span>
@@ -12861,6 +14201,27 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>failed
+failed
+successful
+successful
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12873,11 +14234,11 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/nn_model.h5&#39;</span><span class="p">)</span>
-<span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/decision_tree.txt&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;nn_model.h5&#39;</span><span class="p">)</span>
+<span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;decision_tree.txt&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12889,13 +14250,13 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3> We will drop the 'state' labels from the training data and fill it with 'None' </h3>
+<h3> Droping the 'state' labels from the test data and filling it with 'None' </h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_test</span> <span class="o">=</span> <span class="n">kick_start</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -12909,7 +14270,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12919,10 +14280,157 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[53]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>usd_pledged_real</th>
+      <th>usd_goal_real</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000002330</td>
+      <td>The Songs of Adelaide &amp; Abullah</td>
+      <td>Poetry</td>
+      <td>Publishing</td>
+      <td>GBP</td>
+      <td>2015-10-09</td>
+      <td>1000.0</td>
+      <td>2015-08-11 12:12:28</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>GB</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1533.95</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000004038</td>
+      <td>Where is Hank?</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2013-02-26</td>
+      <td>45000.0</td>
+      <td>2013-01-12 00:20:50</td>
+      <td>220.0</td>
+      <td>3</td>
+      <td>US</td>
+      <td>220.0</td>
+      <td>220.0</td>
+      <td>45000.00</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000007540</td>
+      <td>ToshiCapital Rekordz Needs Help to Complete Album</td>
+      <td>Music</td>
+      <td>Music</td>
+      <td>USD</td>
+      <td>2012-04-16</td>
+      <td>5000.0</td>
+      <td>2012-03-17 03:24:11</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>US</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>5000.00</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000011046</td>
+      <td>Community Film Project: The Art of Neighborhoo...</td>
+      <td>Film &amp; Video</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2015-08-29</td>
+      <td>19500.0</td>
+      <td>2015-07-04 08:35:03</td>
+      <td>1283.0</td>
+      <td>14</td>
+      <td>US</td>
+      <td>1283.0</td>
+      <td>1283.0</td>
+      <td>19500.00</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000014025</td>
+      <td>Monarch Espresso Bar</td>
+      <td>Restaurants</td>
+      <td>Food</td>
+      <td>USD</td>
+      <td>2016-04-01</td>
+      <td>50000.0</td>
+      <td>2016-02-26 13:38:27</td>
+      <td>52375.0</td>
+      <td>224</td>
+      <td>US</td>
+      <td>52375.0</td>
+      <td>52375.0</td>
+      <td>50000.00</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expected_outputs</span> <span class="o">=</span> <span class="n">kick_start</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
@@ -12933,10 +14441,40 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[54]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        failed
+1        failed
+2        failed
+3      canceled
+4    successful
+5    successful
+6        failed
+7      canceled
+8      canceled
+9        failed
+Name: state, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
@@ -12954,14 +14492,32 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Getting predictions on the training dataset took 10.777156134982999 minutes
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/results_training_data.csv&#39;</span><span class="p">)</span>
+<span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;results_training_data.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12971,7 +14527,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">display_results_data</span><span class="p">(</span><span class="n">result_df</span><span class="p">):</span>
@@ -12995,7 +14551,7 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_results_data</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
@@ -13005,23 +14561,44 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+True Positives = 285939		True Pos. Percentage = 88.32092664092664
+
+Errors = 37811			Error Percentage = 11.67907335907336
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1> TESTING ON UNSEEN DATA </h1></p>
-<h3> I will now use the 'kick_start_unique' dataframe set aside for testing which has data neither model was trained on </h3>
+<h3> Loading the models </h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/nn_model.h5&#39;</span><span class="p">)</span>
-<span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/decision_tree.txt&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;nn_model.h5&#39;</span><span class="p">)</span>
+<span class="n">d_tree</span> <span class="o">=</span> <span class="n">load_tree</span><span class="p">(</span><span class="s1">&#39;decision_tree.txt&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13033,20 +14610,169 @@ Though the output of this decision tree is a probability distribution, I still l
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3> Recalling the unique data from 2018 not present in 2016 for this test. <br>
-These records are new to both the models as only 2016 records were considered for the training </h3>
+<h3> I will now use the 'kick_start_unique' dataframe. <br>
+This dataframe was set aside for testing. <br>
+It contains the unique data from the 2018 file that are not present in 2016 file. <br>
+These records are "new" to both the models as only 2016 records were considered for their training.</h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kick_start_unique</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[60]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>state</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>usd_pledged_real</th>
+      <th>usd_goal_real</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000003930</td>
+      <td>Greeting From Earth: ZGAC Arts Capsule For ET</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-11-01</td>
+      <td>30000.0</td>
+      <td>2017-09-02 04:43:57</td>
+      <td>2421.00</td>
+      <td>failed</td>
+      <td>15</td>
+      <td>US</td>
+      <td>100.00</td>
+      <td>2421.00</td>
+      <td>30000.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000057089</td>
+      <td>Tombstone: Old West tabletop game and miniatur...</td>
+      <td>Tabletop Games</td>
+      <td>Games</td>
+      <td>GBP</td>
+      <td>2017-05-03</td>
+      <td>5000.0</td>
+      <td>2017-04-05 19:44:18</td>
+      <td>94175.00</td>
+      <td>successful</td>
+      <td>761</td>
+      <td>GB</td>
+      <td>57763.78</td>
+      <td>121857.33</td>
+      <td>6469.73</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000081649</td>
+      <td>MikeyJ clothing brand fundraiser</td>
+      <td>Childrenswear</td>
+      <td>Fashion</td>
+      <td>AUD</td>
+      <td>2017-09-07</td>
+      <td>2500.0</td>
+      <td>2017-08-08 01:20:20</td>
+      <td>1.00</td>
+      <td>failed</td>
+      <td>1</td>
+      <td>AU</td>
+      <td>0.00</td>
+      <td>0.81</td>
+      <td>2026.10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100011318</td>
+      <td>My Moon - Animated Short Film</td>
+      <td>Animation</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-05-03</td>
+      <td>50000.0</td>
+      <td>2017-04-03 17:11:33</td>
+      <td>57577.31</td>
+      <td>successful</td>
+      <td>840</td>
+      <td>US</td>
+      <td>10120.00</td>
+      <td>57577.31</td>
+      <td>50000.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000149007</td>
+      <td>Unschooling To University Book Project</td>
+      <td>Nonfiction</td>
+      <td>Publishing</td>
+      <td>CAD</td>
+      <td>2018-01-19</td>
+      <td>3000.0</td>
+      <td>2017-11-20 18:15:14</td>
+      <td>592.00</td>
+      <td>live</td>
+      <td>24</td>
+      <td>CA</td>
+      <td>185.65</td>
+      <td>472.88</td>
+      <td>2396.36</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13062,7 +14788,7 @@ These records are new to both the models as only 2016 records were considered fo
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expected_outputs</span> <span class="o">=</span> <span class="n">kick_start_unique</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
@@ -13073,10 +14799,40 @@ These records are new to both the models as only 2016 records were considered fo
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[61]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        failed
+1    successful
+2        failed
+3    successful
+4          live
+5    successful
+6        failed
+7        failed
+8        failed
+9    successful
+Name: state, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">kick_start_unique</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -13085,6 +14841,153 @@ These records are new to both the models as only 2016 records were considered fo
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[62]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>name</th>
+      <th>category</th>
+      <th>main_category</th>
+      <th>currency</th>
+      <th>deadline</th>
+      <th>goal</th>
+      <th>launched</th>
+      <th>pledged</th>
+      <th>backers</th>
+      <th>country</th>
+      <th>usd pledged</th>
+      <th>usd_pledged_real</th>
+      <th>usd_goal_real</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000003930</td>
+      <td>Greeting From Earth: ZGAC Arts Capsule For ET</td>
+      <td>Narrative Film</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-11-01</td>
+      <td>30000.0</td>
+      <td>2017-09-02 04:43:57</td>
+      <td>2421.00</td>
+      <td>15</td>
+      <td>US</td>
+      <td>100.00</td>
+      <td>2421.00</td>
+      <td>30000.00</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000057089</td>
+      <td>Tombstone: Old West tabletop game and miniatur...</td>
+      <td>Tabletop Games</td>
+      <td>Games</td>
+      <td>GBP</td>
+      <td>2017-05-03</td>
+      <td>5000.0</td>
+      <td>2017-04-05 19:44:18</td>
+      <td>94175.00</td>
+      <td>761</td>
+      <td>GB</td>
+      <td>57763.78</td>
+      <td>121857.33</td>
+      <td>6469.73</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000081649</td>
+      <td>MikeyJ clothing brand fundraiser</td>
+      <td>Childrenswear</td>
+      <td>Fashion</td>
+      <td>AUD</td>
+      <td>2017-09-07</td>
+      <td>2500.0</td>
+      <td>2017-08-08 01:20:20</td>
+      <td>1.00</td>
+      <td>1</td>
+      <td>AU</td>
+      <td>0.00</td>
+      <td>0.81</td>
+      <td>2026.10</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100011318</td>
+      <td>My Moon - Animated Short Film</td>
+      <td>Animation</td>
+      <td>Film &amp; Video</td>
+      <td>USD</td>
+      <td>2017-05-03</td>
+      <td>50000.0</td>
+      <td>2017-04-03 17:11:33</td>
+      <td>57577.31</td>
+      <td>840</td>
+      <td>US</td>
+      <td>10120.00</td>
+      <td>57577.31</td>
+      <td>50000.00</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000149007</td>
+      <td>Unschooling To University Book Project</td>
+      <td>Nonfiction</td>
+      <td>Publishing</td>
+      <td>CAD</td>
+      <td>2018-01-19</td>
+      <td>3000.0</td>
+      <td>2017-11-20 18:15:14</td>
+      <td>592.00</td>
+      <td>24</td>
+      <td>CA</td>
+      <td>185.65</td>
+      <td>472.88</td>
+      <td>2396.36</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13100,7 +15003,7 @@ These records are new to both the models as only 2016 records were considered fo
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
@@ -13111,21 +15014,39 @@ These records are new to both the models as only 2016 records were considered fo
 
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Getting predictions on the Test dataset took &#39;</span> <span class="o">+</span> 
-       <span class="nb">str</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; minutes&#39;</span><span class="p">)</span>
+       <span class="nb">str</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; seconds&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Getting predictions on the Test dataset took 106.4665780787052 seconds
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/working/unseen_test_predictions.csv&#39;</span><span class="p">)</span>
+<span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;unseen_test_predictions.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13135,7 +15056,7 @@ These records are new to both the models as only 2016 records were considered fo
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_results_data</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
@@ -13145,12 +15066,43 @@ These records are new to both the models as only 2016 records were considered fo
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+True Positives = 45667		True Pos. Percentage = 83.16548596820309
+
+Errors = 9244			Error Percentage = 16.834514031796907
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1> So, the accuracy of the combined, symbiotic models, is still better than 80% even on unseen data </h1>
+<h1> So, the accuracy of the combined, symbiotic models, averages ~83% on unseen data </h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>P.S: <br>
+We can observe from the results file that most of the misclassified records are for values in the 'state' column that are neither success or failure. This can be explained by noting that distribution of states in the training and test data is highly unbalanced with most records having failure and sucess instances (perhaps 83%) as compared to 'undefined', 'cancelled', 'live' etc.</p>
+
 </div>
 </div>
 </div>
